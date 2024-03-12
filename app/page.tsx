@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useCart from "../(store)/store";
 import { useOrderDetails } from "@/hooks/useOrderDetails";
 import CartItem from "../components/CartItem";
-// import CartOrderSummary from "./CartOrderSummary";
+import CartOrderSummary from "../components/CartOrderSummary";
 
 import EmptyCart from "../components/EmptyCart";
 import Loader from "../components/Loader";
@@ -54,7 +54,7 @@ const CartPage = () => {
     <>
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-6 md:py-8 lg:py-12">
         <div className="flex flex-col lg:flex-row items-start lg:items-stretch gap-8 md:gap-16">
-          <div className="flex-2 border rounded-lg p-2 md:p-4 lg:p-8">
+          <div className="flex-2 border rounded-lg p-2 md:p-4 lg:p-8 min-w-full lg:min-w-96 lg:max-w-3xl">
             <h2 className="text-xl font-extrabold md:text-2xl">
               Shopping Cart ({cart.length} {cartItemsText})
             </h2>
@@ -82,11 +82,11 @@ const CartPage = () => {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col items-center">
-            {/* <CartOrderSummary
+          <div className="flex-1 flex flex-col items-center min-w-full lg:min-w-96">
+            <CartOrderSummary
               subTotal={subTotal}
               isCartEmpty={cart.length > 0 ? false : true}
-            /> */}
+            />
             <div className="mt-6 font-semibold">
               <p>or</p>
               <button className="text-blue-500" onClick={reloadCart}>

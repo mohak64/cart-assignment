@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <section className="relative overflow-hidden bg-white py-8">
       <div className="container relative z-10 mx-auto px-4">
-        <div className="-m-8 flex flex-wrap items-center justify-between">
-          <div className="w-auto p-8">
+        <div className="-m-8 flex flex-wrap items-center justify-center md:justify-between">
+          <div className="w-auto ml-4 md:ml-0 p-4 lg:p-8">
             <a href="#">
               <div className="inline-flex items-center">
                 <img
@@ -14,18 +14,11 @@ const Footer = () => {
                   className="w-8 h-8"
                 />
                 <span className="ml-4 text-lg font-bold">Groww Cart.</span>
-                <span className="ml-2 text-md font-medium">
-                  Built with{" "}
-                  <span role="img" aria-label="heart">
-                    ❤️
-                  </span>{" "}
-                  by Mohak
-                </span>
               </div>
             </a>
           </div>
-          <div className="w-auto p-8">
-            <ul className="-m-5 flex flex-wrap items-center">
+          <div className="w-auto ml-4 md:ml-0 p-4 md:p-8">
+            {/* <ul className="-m-5 flex flex-wrap items-center">
               <li className="p-5">
                 <a
                   className="font-medium text-gray-600 hover:text-gray-700"
@@ -58,9 +51,16 @@ const Footer = () => {
                   Contact Us
                 </a>
               </li>
-            </ul>
+            </ul> */}
+            <span className="ml-2 text-md font-medium">
+              Built with{" "}
+              <span role="img" aria-label="heart">
+                ❤️
+              </span>{" "}
+              by Mohak
+            </span>
           </div>
-          <div className="w-auto p-8">
+          <div className="w-auto ml-4 md:ml-0 p-4 lg:p-8">
             <div className="-m-1.5 flex flex-wrap">
               <div className="w-auto p-1.5">
                 <a href="#">

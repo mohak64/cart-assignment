@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <header className="bg-white p-8">
+    <header className="bg-white p-8 lg:ml-30 xl:ml-20">
       <div className="flex items-center">
         <img
           src="https://groww.in/groww-logo-270.png"
