@@ -1,5 +1,7 @@
+"use client"
+
 import { useState } from "react";
-import QuantitySelect from "./QuantitySelect";
+
 
 const CartItem = (props) => {
     const {
@@ -20,52 +22,36 @@ const CartItem = (props) => {
 
     return (
         <div className="flex flex-col md:flex-row justify-between items-center">
-            <div>
-                {/* CartProductMeta component */}
-                <div>
-                    <img src={imageUrl} alt={title} className="w-16 h-16 mr-4" />
-                    <div>
-                        <h3 className="text-lg font-semibold">{title}</h3>
-                        {description && <p className="text-sm">{description}</p>}
+
+
+            <li li key={name} className="flex flex-col py-6 sm:flex-row sm:justify-between" >
+                <div className="flex w-full space-x-2 sm:space-x-4 ">
+                    <img
+                        className="h-20 w-20 flex-shrink-0 rounded object-contain outline-none dark:border-transparent sm:h-32 sm:w-32"
+                        src={imageUrl}
+                        alt={title}
+                    />
+                    <div className="flex w-full flex-col m-auto mr-2 pb-4">
+                        <div className="flex w-full justify-between space-x-2 pb-2">
+                            <div className="space-y-1 align-middle flex items-center">
+                                <p className="text-sm">{title}</p>
+                            </div>
+                            <div className="text-right">
+                                <p className="text-lg font-semibold">${price}</p>
+                            </div>
+                        </div>
+                        <div className="flex divide-x text-sm">
+                            <div className="flex items-center space-x-2 px-2 py-1 pl-0">
+
+
+                                <span>Quantity - {quantity}</span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                {/* End of CartProductMeta component */}
-            </div>
-
-            {/* Desktop */}
-            <div className="hidden md:flex justify-between items-center w-full ml-8">
-                <QuantitySelect
-                    defaultQuantity={quantity}
-                    onChangeQuantity={(newQuantity) => onChangeQuantity?.(newQuantity)}
-                />
-                <span className="text-lg">
-                    {currency} {price}
-                </span>
-                <button
-                    onClick={handleDeleteClick}
-                    className="text-gray-500 hover:text-gray-700"
-                >
-                    Delete
-                </button>
-            </div>
-
-            {/* Mobile */}
-            <div className="flex mt-4 md:hidden justify-between w-full">
-                <button
-                    onClick={handleDeleteClick}
-                    className="text-gray-500 hover:text-gray-700 text-sm"
-                >
-                    Delete
-                </button>
-                <QuantitySelect
-                    defaultQuantity={quantity}
-                    onChangeQuantity={(newQuantity) => onChangeQuantity?.(newQuantity)}
-                />
-                <span className="text-sm">
-                    {currency} {price}
-                </span>
-            </div>
-        </div>
+            </li >
+        </div >
     );
 };
 
