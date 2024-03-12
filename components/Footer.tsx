@@ -13,7 +13,14 @@ const Footer = () => {
                   alt="groww image"
                   className="w-8 h-8"
                 />
-                <span className="ml-4 text-lg font-bold">DevUI</span>
+                <span className="ml-4 text-lg font-bold">Groww Cart.</span>
+                <span className="ml-2 text-md font-medium">
+                  Built with{" "}
+                  <span role="img" aria-label="heart">
+                    ❤️
+                  </span>{" "}
+                  by Mohak
+                </span>
               </div>
             </a>
           </div>
@@ -91,6 +98,7 @@ const Footer = () => {
                   </div>
                 </a>
               </div>
+
               <div className="w-auto p-1.5">
                 <a href="#">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:border-gray-400">

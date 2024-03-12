@@ -14,9 +14,6 @@ const Navbar = () => {
             Ecommerce Cart - Groww
           </h1>
         </div>
-
-        {/* Spacer to push items to the right */}
-        <div className="flex-grow"></div>
       </div>
     </header>
   );
