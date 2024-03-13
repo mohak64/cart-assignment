@@ -135,7 +135,7 @@ const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
       <div className="flex justify-center">
         <button
           onClick={handleCheckout}
-          className={`bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold ${
+          className={`bg-customBlue rounded-md hover:bg-customHoverBlue text-white px-6 py-3 rounded-lg font-semibold ${
             isCartEmpty && "cursor-not-allowed opacity-50"
           }`}
           disabled={isCartEmpty}

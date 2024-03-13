@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const DeliveryDetails = ({ onSubmit }) => {
   const [fullName, setFullName] = useState("");
@@ -10,9 +10,41 @@ const DeliveryDetails = ({ onSubmit }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
 
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+
+  // Validation function for phone number
+  const validatePhoneNumber = (phoneNumber) => {
+    // Use a regular expression to validate the phone number format
+    const phoneRegex = /^\d{10}$/;
+    return setIsPhoneNumberValid(phoneRegex.test(phoneNumber));
+  };
+
+  // Validation function for email
+  const validateEmail = (email) => {
+    // Use a regular expression to validate the email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return setIsEmailValid(emailRegex.test(email));
+  };
+
+  useEffect(() => {
+    validatePhoneNumber(phoneNumber);
+    validateEmail(email);
+  }, [phoneNumber, email]);
+
   const handleSubmit = () => {
     if (!fullName || !address || !zipCode || !city || !phoneNumber || !email) {
       alert("Please fill in all fields.");
+      return;
+    }
+
+    if (!isPhoneNumberValid) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+
+    if (!isEmailValid) {
+      alert("Please enter a valid email address.");
       return;
     }
 
@@ -111,7 +143,7 @@ const DeliveryDetails = ({ onSubmit }) => {
             </div>
             <button
               onClick={handleSubmit}
-              className="w-full bg-customBlue py-2 rounded-md hover:bg-customHoverBlue text-white"
+              className="w-full bg-customBlue py-2 rounded-md hover:bg-customHoverBlue font-semibold text-white"
             >
               Save Address
             </button>
