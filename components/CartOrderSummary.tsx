@@ -19,6 +19,7 @@ const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
   const [discount, setDiscount] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [isCouponCodeVisible, setIsCouponCodeVisible] = useState(false);
+  const [hover, setHover] = useState(false);
 
   const applyCoupon = (code) => {
     let appliedDiscount = 0;
@@ -54,8 +55,8 @@ const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
   };
 
   let grandTotal = subTotal - discount;
-  if (subTotal < 499) {
-    grandTotal += 199;
+  if (subTotal < 199) {
+    grandTotal += 40;
   }
 
   return (
@@ -64,15 +65,27 @@ const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
       <div className="space-y-6">
         <OrderSummaryItem label="Subtotal" value={formatPrice(subTotal)} />
         <OrderSummaryItem label="Shipping Charges">
-          {isCartEmpty ? (
-            <span className="text-green-500 font-bold">FREE</span>
-          ) : subTotal < 499 ? (
-            <>
-              <span>{formatPrice(199)}</span>
-            </>
-          ) : (
-            <span className="text-green-500 font-bold">FREE</span>
-          )}
+          <span
+            className={`text-green-500 font-bold ${
+              subTotal < 199 ? "hover:text-blue-500" : ""
+            }`}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            {subTotal < 199 && !isCartEmpty ? (
+              <>
+                {formatPrice(40)}{" "}
+                {hover && (
+                  <span className="text-sm text-gray-500">
+                    {" "}
+                    (Above $199, Free)
+                  </span>
+                )}
+              </>
+            ) : (
+              "FREE"
+            )}
+          </span>
         </OrderSummaryItem>
         <OrderSummaryItem label="Coupon Code">
           <a
@@ -119,15 +132,17 @@ const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
           )}
         </div>
       </div>
-      <button
-        onClick={handleCheckout}
-        className={`bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold ${
-          isCartEmpty && "cursor-not-allowed opacity-50"
-        }`}
-        disabled={isCartEmpty}
-      >
-        Checkout <FaArrowRight className="inline-block ml-2" />
-      </button>
+      <div className="flex justify-center">
+        <button
+          onClick={handleCheckout}
+          className={`bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold ${
+            isCartEmpty && "cursor-not-allowed opacity-50"
+          }`}
+          disabled={isCartEmpty}
+        >
+          Checkout <FaArrowRight className="inline-block ml-2" />
+        </button>
+      </div>
     </div>
   );
 };

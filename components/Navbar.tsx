@@ -1,13 +1,15 @@
+import Image from "next/image";
 import React from "react";
 
 const Navbar = () => {
   return (
     <header className="bg-white p-8 lg:ml-30 xl:ml-20">
       <div className="flex items-center">
-        <img
+        <Image
           src="https://groww.in/groww-logo-270.png"
           alt="groww image"
-          className="w-8 h-8"
+          width={50}
+          height={50}
         />
         <div className="ml-4">
           <h1 className="text-xl font-bold text-black">

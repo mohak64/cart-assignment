@@ -3,10 +3,6 @@ import { ReactNode } from "react";
 interface PriceTagProps {
   currency?: string;
   price: number;
-  salePrice?: number;
-  rootClassName?: string;
-  priceClassName?: string;
-  salePriceClassName?: string;
 }
 
 export type FormatPriceOptions = { locale?: string; currency?: string };
@@ -15,7 +11,7 @@ export function formatPrice(
   value: number,
   opts: { locale?: string; currency?: string } = {}
 ) {
-  const { locale = "en-US", currency = "INR" } = opts;
+  const { locale = "en-US", currency = "USD" } = opts;
   const formatter = new Intl.NumberFormat(locale, {
     currency,
     style: "currency",
@@ -25,24 +21,10 @@ export function formatPrice(
 }
 
 export const PriceTag = (props: PriceTagProps) => {
-  const {
-    price,
-    currency,
-    salePrice,
-    rootClassName,
-    priceClassName,
-    salePriceClassName,
-  } = props;
+  const { price, currency } = props;
   return (
-    <div className={`flex space-x-1 ${rootClassName}`}>
-      <Price isOnSale={!!salePrice} className={priceClassName}>
-        {formatPrice(price, { currency })}
-      </Price>
-      {salePrice && (
-        <SalePrice className={salePriceClassName}>
-          {formatPrice(salePrice, { currency })}
-        </SalePrice>
-      )}
+    <div className="flex space-x-1">
+      <Price>{formatPrice(price, { currency })}</Price>
     </div>
   );
 };
@@ -68,9 +50,3 @@ const Price = (props: PriceProps) => {
     </span>
   );
 };
-
-const SalePrice = (props: { children?: ReactNode; className?: string }) => (
-  <span className={`font-semibold text-gray-800 ${props.className}`}>
-    {props.children}
-  </span>
-);

@@ -18,6 +18,7 @@ const CartPage = () => {
   const hookCart = useCart();
 
   useEffect(() => {
+    console.log(hookCart.cart);
     setCart(hookCart.cart);
     setSubTotal(calculateTotalValue());
     setTotalCartItems(totalCartItem());
@@ -29,19 +30,20 @@ const CartPage = () => {
     window.location.reload();
   };
 
-  // Function to calculate the total value based on products in the cart
   const calculateTotalValue = () => {
-    return cart.reduce(
+    return hookCart.cart.reduce(
       (total, product) => total + product.price * product.quantity,
       0
     );
   };
 
   const totalCartItem = () => {
-    return cart.reduce((total, product) => total + product.quantity, 0);
+    return hookCart.cart.reduce(
+      (total, product) => total + product.quantity,
+      0
+    );
   };
 
-  // Handling loading and error states
   if (loading) {
     return <Loader />;
   }
@@ -62,21 +64,13 @@ const CartPage = () => {
             {cart.length < 1 && <EmptyCart />}
 
             <div className="space-y-6">
-              {cart.map((product, index) => (
+              {hookCart.cart.map((product, index) => (
                 <CartItem
                   key={product.id}
                   onClickDelete={() => {
                     hookCart.removeItemFromCart(index);
                   }}
                   {...product}
-                  onChangeQuantity={(productId, quantity) => {
-                    let existingCart = cart.map((item) =>
-                      item.id === productId
-                        ? { ...item, quantity: quantity }
-                        : item
-                    );
-                    setCart(existingCart);
-                  }}
                 />
               ))}
             </div>
@@ -88,10 +82,12 @@ const CartPage = () => {
               isCartEmpty={cart.length > 0 ? false : true}
             />
             <div className="mt-6 font-semibold">
-              <p>or</p>
-              <button className="text-blue-500" onClick={reloadCart}>
-                Continue shopping
-              </button>
+              <p>
+                or
+                <button className="text-blue-500 ml-1" onClick={reloadCart}>
+                  Continue shopping
+                </button>
+              </p>
             </div>
           </div>
         </div>

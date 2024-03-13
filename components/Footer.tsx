@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Footer = () => {
@@ -8,10 +9,11 @@ const Footer = () => {
           <div className="w-auto ml-4 md:ml-0 p-4 lg:p-8">
             <a href="#">
               <div className="inline-flex items-center">
-                <img
+                <Image
                   src="https://groww.in/groww-logo-270.png"
                   alt="groww image"
-                  className="w-8 h-8"
+                  width={30}
+                  height={30}
                 />
                 <span className="ml-4 text-lg font-bold">Groww Cart.</span>
               </div>
