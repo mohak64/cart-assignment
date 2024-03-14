@@ -21,12 +21,41 @@ const CreditCardForm = () => {
     setCreditCardDetails({ ...creditCardDetails, [name]: value });
   };
 
+  const isCardExpired = () => {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1; // Months are zero-indexed
+
+    // Check if the card's expiration year is less than the current year
+    if (parseInt(creditCardDetails.expirationYear) < currentYear) {
+      return true;
+    }
+
+    // If the card's expiration year is the same as the current year, check the month
+    if (
+      parseInt(creditCardDetails.expirationYear) === currentYear &&
+      parseInt(creditCardDetails.expirationMonth) < currentMonth
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
   const handlePayment = () => {
     if (!validateCreditCard(creditCardDetails.cardNumber)) {
       Swal.fire({
         icon: "error",
         title: "Invalid Card Number",
         text: "Please enter a valid credit card number.",
+      });
+      return;
+    }
+
+    if (isCardExpired()) {
+      Swal.fire({
+        icon: "error",
+        title: "Card Expired",
+        text: "The credit card has expired. Please use a valid card.",
       });
       return;
     }
