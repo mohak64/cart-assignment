@@ -1,6 +1,3 @@
-
-"use client";
-
 import { create } from "zustand";
 
 interface UpiIdDetails {
@@ -12,22 +9,14 @@ interface UpiIdStore {
     setUpiIdDetails: (details: UpiIdDetails) => void;
 }
 
-const useUpiId = create<UpiIdStore>((set) => {
-    const storedUpiIdDetailsString = localStorage.getItem("upiIdDetails");
-    const storedUpiIdDetails = storedUpiIdDetailsString
-        ? JSON.parse(storedUpiIdDetailsString)
-        : { upiId: "" };
+const useUpiId = create<UpiIdStore>((set) => ({
+    upiIdDetails: {
+        upiId: "",
+    },
 
-    return {
-        upiIdDetails: storedUpiIdDetails,
-        setUpiIdDetails: (details) => {
-            localStorage.setItem("upiIdDetails", JSON.stringify(details));
-            set((state) => ({
-                ...state,
-                upiIdDetails: details,
-            }));
-        },
-    };
-});
+    setUpiIdDetails: (details) => {
+        set({ upiIdDetails: details });
+    },
+}));
 
 export default useUpiId;

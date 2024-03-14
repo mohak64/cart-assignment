@@ -4,40 +4,26 @@ import useCart from "../(store)/store";
 import { useOrderDetails } from "@/hooks/useOrderDetails";
 import CartItem from "../components/cart/CartItem";
 import CartOrderSummary from "../components/cart/CartOrderSummary";
-
 import EmptyCart from "../components/ui/EmptyCart";
 import Loader from "../components/ui/Loader";
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
-
 const CartPage = () => {
   const { orderDetails, loading, error } = useOrderDetails();
-  const [cart, setCart] = useState<Product[]>([]);
+  const hookCart = useCart();
+
   const [subTotal, setSubTotal] = useState(0);
   const [totalCartItems, setTotalCartItems] = useState(0);
   const [cartItemsText, setCartItemsText] = useState("Item");
 
-  const hookCart = useCart();
-
   useEffect(() => {
-    console.log(hookCart.cart);
-    setCart(hookCart.cart);
     setSubTotal(calculateTotalValue());
     setTotalCartItems(totalCartItem());
     setCartItemsText(hookCart.cart.length > 1 ? "Items" : "Item");
   }, [hookCart.cart]);
 
   const reloadCart = () => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("cart");
-      window.location.reload();
-    }
+    hookCart.emptyCart();
+    window.location.reload();
   };
 
   const calculateTotalValue = () => {
@@ -69,10 +55,10 @@ const CartPage = () => {
           <div className="flex-2   min-w-full lg:min-w-96 lg:max-w-3xl">
             <div className="border rounded-lg p-2 md:p-4 lg:p-8 shadow-xl ">
               <h2 className="text-xl font-extrabold md:text-2xl">
-                Shopping Cart ({cart.length} {cartItemsText})
+                Shopping Cart ({hookCart.cart.length} {cartItemsText})
               </h2>
 
-              {cart.length < 1 && <EmptyCart />}
+              {hookCart.cart.length < 1 && <EmptyCart />}
 
               <div className="space-y-6">
                 {hookCart.cart.map((product, index) => (
@@ -91,7 +77,7 @@ const CartPage = () => {
           <div className="flex-1 flex flex-col items-center min-w-full lg:min-w-96">
             <CartOrderSummary
               subTotal={subTotal}
-              isCartEmpty={cart.length > 0 ? false : true}
+              isCartEmpty={hookCart.cart.length > 0 ? false : true}
             />
             <div className="mt-6 font-semibold">
               <p>

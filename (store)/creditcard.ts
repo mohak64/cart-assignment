@@ -1,5 +1,3 @@
-"use client";
-
 import { create } from "zustand";
 
 interface CreditCardDetails {
@@ -15,28 +13,18 @@ interface CreditCardStore {
     setCreditCardDetails: (details: CreditCardDetails) => void;
 }
 
-const useCreditCard = create<CreditCardStore>((set) => {
-    const storedCreditCardDetailsString = localStorage.getItem("creditCardDetails");
-    const storedCreditCardDetails = storedCreditCardDetailsString
-        ? JSON.parse(storedCreditCardDetailsString)
-        : {
-            name: "",
-            cardNumber: "",
-            expirationMonth: "",
-            expirationYear: "",
-            securityCode: "",
-        };
+const useCreditCard = create<CreditCardStore>((set) => ({
+    creditCardDetails: {
+        name: "",
+        cardNumber: "",
+        expirationMonth: "",
+        expirationYear: "",
+        securityCode: "",
+    },
 
-    return {
-        creditCardDetails: storedCreditCardDetails,
-        setCreditCardDetails: (details) => {
-            localStorage.setItem("creditCardDetails", JSON.stringify(details));
-            set((state) => ({
-                ...state,
-                creditCardDetails: details,
-            }));
-        },
-    };
-});
+    setCreditCardDetails: (details) => {
+        set({ creditCardDetails: details });
+    },
+}));
 
 export default useCreditCard;

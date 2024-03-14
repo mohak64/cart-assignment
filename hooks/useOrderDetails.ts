@@ -1,5 +1,3 @@
-
-"use client"
 import { useEffect, useState } from "react";
 import { fetchOrderDetails } from "@/api";
 import useCart from "@/(store)/store";
@@ -24,17 +22,10 @@ export const useOrderDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                if (!localStorage.getItem("cart")) {
-                    const data = await fetchOrderDetails();
-                    localStorage.setItem("cart", JSON.stringify(data.products));
-                    hookCart.setCart(data.products);
-                    hookCart.setPaymentMethods(data.paymentMethods);
-                    setOrderDetails(data);
-                } else {
-                    const cart = JSON.parse(localStorage.getItem("cart")!);
-                    hookCart.setCart(cart);
-                    setOrderDetails({ products: cart, paymentMethods: hookCart.paymentMethods });
-                }
+                const data = await fetchOrderDetails();
+                hookCart.setCart(data.products);
+                hookCart.setPaymentMethods(data.paymentMethods);
+                setOrderDetails(data);
             } catch (error: any) {
                 setError(error.message || "Error fetching order details");
             } finally {
@@ -43,7 +34,7 @@ export const useOrderDetails = () => {
         };
 
         fetchData();
-    }, [hookCart]);
+    }, []);
 
     return {
         orderDetails,
