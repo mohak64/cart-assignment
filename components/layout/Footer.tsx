@@ -65,7 +65,7 @@ const Footer = () => {
           <div className="w-auto ml-4 md:ml-0 p-4 lg:p-8">
             <div className="-m-1.5 flex flex-wrap">
               <div className="w-auto p-1.5">
-                <a href="/">
+                <a href="https://www.linkedin.com/company/groww.in/?originalSubdomain=in">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:border-gray-400">
                     <svg
                       width="8"
@@ -83,7 +83,7 @@ const Footer = () => {
                 </a>
               </div>
               <div className="w-auto p-1.5">
-                <a href="#">
+                <a href="https://twitter.com/_groww">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:border-gray-400">
                     <svg
                       width="14"
@@ -102,7 +102,7 @@ const Footer = () => {
               </div>
 
               <div className="w-auto p-1.5">
-                <a href="/">
+                <a href="https://www.instagram.com/groww_official/?hl=en">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:border-gray-400">
                     <svg
                       width="16"

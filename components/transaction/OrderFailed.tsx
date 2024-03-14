@@ -16,12 +16,12 @@ const OrderFailed = () => {
     <div className=" mr-auto block  lg:flex justify-center  gap-5">
       <div className="flex justify-center align-middle shadow-lg">
         <div className="flex flex-col items-center justify-center border rounded-lg md:p-4 mx-auto">
-          <img
+          <Image
             src="https://img.freepik.com/free-vector/flat-design-no-data-illustration_23-2150527142.jpg?w=826&t=st=1710434943~exp=1710435543~hmac=9fa90702793760840d540110135b98385124d1c59a300b4771326393a7375829"
             alt="gif"
             className="rounded-full"
-            width="200px"
-            height="200px"
+            width={200}
+            height={200}
           />
           <h2 className="font-bold text-lg sm:text-xl mt-4 text-center text-red-500">
             Transaction Failed
