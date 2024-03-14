@@ -1,5 +1,6 @@
 "use client";
 import CreditCardForm from "@/components/CreditCard";
+import UpiForm from "@/components/Upicard";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -14,7 +15,7 @@ const CardTab = () => {
 const WalletTab = () => {
   return (
     <div className="p-4">
-      <p className="text-lg font-semibold">Wallet Payment Form</p>
+      <UpiForm />
     </div>
   );
 };

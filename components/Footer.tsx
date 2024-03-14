@@ -3,11 +3,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <section className="relative overflow-hidden bg-white py-8">
+    <footer className="relative overflow-hidden bg-white py-8 absolute bottom-0 w-full">
       <div className="container relative z-10 mx-auto px-4">
         <div className="-m-8 flex flex-wrap items-center justify-center md:justify-between">
           <div className="w-auto ml-4 md:ml-0 p-4 lg:p-8">
-            <a href="#">
+            <a href="/">
               <div className="inline-flex items-center">
                 <Image
                   src="https://groww.in/groww-logo-270.png"
@@ -65,7 +65,7 @@ const Footer = () => {
           <div className="w-auto ml-4 md:ml-0 p-4 lg:p-8">
             <div className="-m-1.5 flex flex-wrap">
               <div className="w-auto p-1.5">
-                <a href="#">
+                <a href="/">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:border-gray-400">
                     <svg
                       width="8"
@@ -102,7 +102,7 @@ const Footer = () => {
               </div>
 
               <div className="w-auto p-1.5">
-                <a href="#">
+                <a href="/">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:border-gray-400">
                     <svg
                       width="16"
@@ -123,7 +123,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </section>
+    </footer>
   );
 };
 

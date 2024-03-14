@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
+import Swal from "sweetalert2";
 
 const CreditCardForm = () => {
   const [formData, setFormData] = useState({
@@ -15,12 +14,6 @@ const CreditCardForm = () => {
   });
 
   const router = useRouter();
-  const toastError = (message) => {
-    toast.error(message);
-  };
-  const toastSuccess = (message) => {
-    toast.success(message);
-  };
 
   const validateCreditCard = (cardNumber) => {
     // For simplicity, we'll just check if the number is numeric and has 16 digits
@@ -35,14 +28,22 @@ const CreditCardForm = () => {
   const handlePayment = () => {
     // Validate credit card number
     if (!validateCreditCard(formData.cardNumber)) {
-      toastError("Please enter a valid credit card number.");
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Card Number",
+        text: "Please enter a valid credit card number.",
+      });
       return;
     }
 
     // Add additional validation checks as needed
 
     // Payment successful
-    toastSuccess("Thank you for your payment!");
+    Swal.fire({
+      icon: "success",
+      title: "Payment Successful",
+      text: "Thank you for your payment!",
+    });
 
     router.push("/confirmation2");
   };
