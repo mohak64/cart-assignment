@@ -10,10 +10,6 @@ const CreditCardForm = () => {
 
   const router = useRouter();
 
-  const validateCreditCard = (cardNumber: string) => {
-    return /^\d{16}$/.test(cardNumber);
-  };
-
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -37,6 +33,43 @@ const CreditCardForm = () => {
     }
 
     return false;
+  };
+
+  const validateCreditCard = (cardNumber: string) => {
+    // Remove all non-digit characters
+    const cleanedCardNumber = cardNumber.replace(/\D/g, "");
+
+    // Check if the card number contains only digits and has a length of 16
+    if (!/^\d{16}$/.test(cleanedCardNumber)) {
+      return false;
+    }
+
+    let sum = 0;
+    let double = false;
+
+    // Iterate through each digit in reverse order
+    for (let i = cleanedCardNumber.length - 1; i >= 0; i--) {
+      let digit = parseInt(cleanedCardNumber.charAt(i), 10);
+
+      if (double) {
+        // Double every second digit
+        digit *= 2;
+
+        // If the doubled digit is greater than 9, subtract 9
+        if (digit > 9) {
+          digit -= 9;
+        }
+      }
+
+      // Add the digit to the sum
+      sum += digit;
+
+      // Toggle the double variable
+      double = !double;
+    }
+
+    // The card number is valid if the sum is a multiple of 10
+    return sum % 10 === 0;
   };
 
   const handlePayment = () => {
@@ -99,12 +132,12 @@ const CreditCardForm = () => {
         />
       </div>
       <div className="mb-3">
-        <div className="mb-1">Card Number</div>
+        <div className="mb-1">Card Number - 4556 7375 8689 9855(Valid)</div>
         <input
           name="cardNumber"
           value={creditCardDetails.cardNumber}
           onChange={handleInputChange}
-          placeholder="0000 0000 0000 0000"
+          placeholder="374245455400126"
           type="numeric"
           className="w-full border border-gray-300 rounded-md p-2 mb-1"
         />
