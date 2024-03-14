@@ -2,16 +2,15 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import useCreditCard from "../../(store)/creditcard"; // Import the useCreditCard hook
+import useCreditCard from "../../(store)/creditcard";
 import Image from "next/image";
 
 const CreditCardForm = () => {
-  const { creditCardDetails, setCreditCardDetails } = useCreditCard(); // Use the useCreditCard hook
+  const { creditCardDetails, setCreditCardDetails } = useCreditCard();
 
   const router = useRouter();
 
   const validateCreditCard = (cardNumber: string) => {
-    // For simplicity, we'll just check if the number is numeric and has 16 digits
     return /^\d{16}$/.test(cardNumber);
   };
 
@@ -24,14 +23,12 @@ const CreditCardForm = () => {
 
   const isCardExpired = () => {
     const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth() + 1; // Months are zero-indexed
+    const currentMonth = new Date().getMonth() + 1;
 
-    // Check if the card's expiration year is less than the current year
     if (parseInt(creditCardDetails.expirationYear) < currentYear) {
       return true;
     }
 
-    // If the card's expiration year is the same as the current year, check the month
     if (
       parseInt(creditCardDetails.expirationYear) === currentYear &&
       parseInt(creditCardDetails.expirationMonth) < currentMonth
@@ -69,7 +66,6 @@ const CreditCardForm = () => {
     router.push("/confirmation");
   };
   useEffect(() => {
-    // Fetch credit card details from localStorage if available
     if (typeof window !== "undefined") {
       const storedCreditCardDetails = localStorage.getItem("creditCardDetails");
       if (storedCreditCardDetails) {

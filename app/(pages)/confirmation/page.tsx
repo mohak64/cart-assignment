@@ -26,7 +26,6 @@ const Confirmation: React.FC = () => {
     );
   };
 
-  // Save the payment status in localStorage after each call
   useEffect(() => {
     const paymentStatus =
       randomValue < probabilityThreshold ? "success" : "failed";

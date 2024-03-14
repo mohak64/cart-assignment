@@ -29,7 +29,6 @@ const UPIPaymentForm = () => {
       return;
     }
 
-    // Save UPI ID details to localStorage
     if (typeof window !== "undefined") {
       localStorage.setItem("upiIdDetails", JSON.stringify(upiIdDetails));
     }
@@ -38,7 +37,6 @@ const UPIPaymentForm = () => {
   };
 
   useEffect(() => {
-    // Fetch UPI ID details from localStorage if available
     if (typeof window !== "undefined") {
       const storedUpiIdDetails = localStorage.getItem("upiIdDetails");
       if (storedUpiIdDetails) {
@@ -50,7 +48,7 @@ const UPIPaymentForm = () => {
   return (
     <div
       className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700 max-w-2xl border"
-      style={{ animation: "fadeIn 1s ease-in-out" }} // Apply fade-in animation
+      style={{ animation: "fadeIn 1s ease-in-out" }}
     >
       <div className="mb-2">
         <div className="text-center font-bold text-xl uppercase">

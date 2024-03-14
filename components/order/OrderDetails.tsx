@@ -11,7 +11,7 @@ interface CartItem {
 }
 
 const OrderDetails = () => {
-  const { cart } = useCart(); // Get cart state from Zustand store
+  const { cart } = useCart();
 
   let storedCartItems = [];
   if (typeof window !== "undefined") {
@@ -21,10 +21,8 @@ const OrderDetails = () => {
       : [];
   }
 
-  // Use Zustand cart if not empty, otherwise use localStorage cart
   const mergedCart = cart.length > 0 ? cart : storedCartItems;
 
-  // Calculate total price
   const total = mergedCart.reduce(
     (acc: number, item: CartItem) => acc + item.price * item.quantity,
     0

@@ -203,8 +203,6 @@ const DeliveryDetails = () => {
         <Image
           className=" flex-shrink-0 rounded object-contain outline-none dark:border-transparent "
           src="https://img.freepik.com/free-vector/delivery-concept-illustration_114360-140.jpg?w=826&t=st=1710317093~exp=1710317693~hmac=02d6d4165a67b97123c3b2ac752325b39e63cb4bebe58c683e30ae2f2f165a58"
-          // src="https://img.freepik.com/free-vector/directions-concept-illustration_114360-2268.jpg?w=826&t=st=1710316268~exp=1710316868~hmac=74384dcb966f9f49efe5b8954ca5440825d0bb0390c9d49833fbeb4e113d86b2"
-          // src="https://img.freepik.com/free-vector/logistic-services-with-support-agent_24877-54382.jpg?t=st=1710317549~exp=1710321149~hmac=2dc976698c6da5f7e7c9d9f2e04a9c94fccf56a38a7703713523ef6be5e6aba4&w=740"
           alt="delivery"
           width={500}
           height={500}
