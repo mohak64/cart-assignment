@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -12,7 +13,7 @@ const DeliverySummary = () => {
   };
 
   return (
-    <div className="space-y-8 border rounded-lg p-4 w-full shadow-xl">
+    <div className="space-y-8 border rounded-lg p-4 w-full shadow-xl sm:w-full">
       <h2 className="text-lg font-bold">Delivery Address</h2>
       <div className="space-y-4">
         <div>

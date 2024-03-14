@@ -62,7 +62,7 @@ const PaymentPage = () => {
         </div>
       </div>
       <div className="flex justify-center align-middle items-center">
-        <div className="p-0 lg: p-8">
+        <div className="p-0 ">
           <Image
             className=" flex-shrink-0 rounded object-contain outline-none dark:border-transparent "
             // src="https://img.freepik.com/free-vector/hand-holds-coin-money-icon_24640-133918.jpg?w=740&t=st=1710406511~exp=1710407111~hmac=dc5c790c7bca09f8a5e01b281cd7dd04628e41683a5e73a4d2b69b2d5a9391fd"
