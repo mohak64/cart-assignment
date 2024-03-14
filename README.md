@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Groww Cart - https://groww-delta.vercel.app/
 
-## Getting Started
+Checkout the Beautiful UI - I WON'T ADD IMAGES TO RUIN THE FIRST LOOK!
 
-First, run the development server:
+### Overview
+This project is a Next.js application that leverages Tailwind CSS for styling and Zustand for state management. It implements a dynamic checkout process with randomized products. Users can choose between different payment methods, including UPI and credit card. The project also features various validations, such as UPI handling, credit card validation using the Luhn algorithm, and more.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Product Randomization:
+- Upon opening the page, the user receives a random combination of products.
+- Users can clear the cache and reload the cart state by pressing the reload cart button.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Checkout Process:
+- After selecting products, the user proceeds to checkout.
+- Every thing is cached using Local Storage.
 
-## Learn More
+#### Payment Page:
+- Users can switch between payment methods.
+- Impressive and Clean UI Detailing.
 
-To learn more about Next.js, take a look at the following resources:
+#### UPI Handling:
+- If the chosen method is UPI, the entered string should end with "@upiHandle."
+- UPI handles can be mapped based on information from the NPCI website (e.g., oksbi, axl).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Credit Card Validation:
+- The Luhn algorithm is applied to check the validity of the credit card number.
+- Only a valid credit card number allows successful payment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### CVV Validation:
+- CVV must consist of 3-4 numeric digits.
 
-## Deploy on Vercel
+#### Expiry Date Validation:
+- Ensures the month and year can be up to 12 years in the future.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Page Reload Handling:
+- If the user reloads the page, all the details stay the same, leveraged using local storage.
+- On continuing shopping, a new product list is fetched.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Payment Status Randomization:
+- After successful payment, the transactionStatus is randomized.
+- The probability of success is 7/10.
+- If a payment is declined once, the next attempt is always confirmed.
+
+#### Dynamic Delivery Address Page
+- User can update his/her Delivery address.
+- Caching performed using Local Storage
+
+### Caching
+- Implement local API cache according to necessity.
+
+### Interactive Elements
+- Create a responsive and dynamic user interface.
+- Implement smooth transitions and animations to enhance the user experience.
+
+### Validation
+- Ensure proper form validation on each page to handle user input errors.
+- Validate the payment information according to the selected payment method.
+
+### Visual Appeal
+- Craft a visually appealing design that aligns with modern UI/UX principles.
+- Pay attention to color schemes, typography, and overall aesthetics.
+
+### Responsiveness
+- Ensure the application is responsive and works well on various screen sizes.
+
+### User-Friendly Flow
+- Design an intuitive and easy-to-navigate flow from checkout to payment selection and confirmation.
+
+### Tech Stack
+- Next.js
+- Tailwind CSS
+- Zustand
+- JavaScript
+
