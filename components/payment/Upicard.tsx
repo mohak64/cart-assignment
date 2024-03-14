@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import useUpiId from "../../(store)/upiid"; // Import the useUpiId hook
 
 const UPIPaymentForm = () => {
-  const [upiId, setUpiId] = useState("");
+  const { upiIdDetails, setUpiIdDetails } = useUpiId(); // Use the useUpiId hook
   const router = useRouter();
 
   const showError = (message) => {
@@ -14,33 +15,18 @@ const UPIPaymentForm = () => {
     });
   };
 
-  const showSuccess = (message) => {
-    Swal.fire({
-      icon: "success",
-      title: "Success",
-      text: message,
-    });
-  };
-
   const handlePayment = () => {
-    // Basic validation for UPI ID
-    if (!upiId) {
+    if (!upiIdDetails.upiId) {
       showError("Please enter a UPI ID.");
       return;
     }
 
-    // Regular expression pattern to validate UPI ID format
     const upiIdPattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
 
-    if (!upiIdPattern.test(upiId)) {
+    if (!upiIdPattern.test(upiIdDetails.upiId)) {
       showError("Please enter a valid UPI ID.");
       return;
     }
-
-    // Add additional validation checks as needed
-
-    // Payment successful
-    showSuccess("Thank you for your payment!");
 
     router.push("/confirmation");
   };
@@ -59,8 +45,8 @@ const UPIPaymentForm = () => {
       <div className="mb-3">
         <div className="mb-1">Enter UPI ID</div>
         <input
-          value={upiId}
-          onChange={(e) => setUpiId(e.target.value)}
+          value={upiIdDetails.upiId}
+          onChange={(e) => setUpiIdDetails({ upiId: e.target.value })}
           placeholder="example@upi"
           type="text"
           className="w-full border border-gray-300 rounded-md p-2 mb-1"

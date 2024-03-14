@@ -1,5 +1,5 @@
 "use client";
-import CartOrderSummary from "@/components/CartOrderSummary";
+import CartOrderSummary from "@/components/cart/CartOrderSummary";
 import DeliverySummary from "@/components/delivery/DeliverySummary";
 import CreditCardForm from "@/components/payment/CreditCard";
 import UpiForm from "@/components/payment/Upicard";

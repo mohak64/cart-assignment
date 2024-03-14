@@ -96,7 +96,7 @@ const DeliveryDetails = () => {
   return (
     <div className=" p-8 mr-auto block  lg:flex justify-center items-center gap-5">
       <div className="flex justify-center align-middle items-center">
-        <div className="flex-1 max-w-lg border border-gray-300 rounded-lg p-6">
+        <div className="flex-1 max-w-lg border border-gray-300 rounded-lg p-6 shadow-xl ">
           <h2 className="text-lg font-semibold mb-4">Delivery Information</h2>
           <div className="space-y-6">
             <div>

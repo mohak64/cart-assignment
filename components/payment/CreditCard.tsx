@@ -29,14 +29,7 @@ const CreditCardForm = () => {
       return;
     }
 
-    Swal.fire({
-      icon: "success",
-      title: "Payment Successful",
-      text: "Thank you for your payment!",
-    });
-
     router.push("/confirmation");
-    console.log(creditCardDetails);
   };
 
   return (
@@ -114,7 +107,7 @@ const CreditCardForm = () => {
           </select>
         </div>
       </div>
-      <div className="mb-10">
+      <div className="mb-4">
         <div className="mb-1">Security Code</div>
         <input
           name="securityCode"

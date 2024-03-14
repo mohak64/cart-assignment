@@ -12,7 +12,7 @@ const DeliverySummary = () => {
   };
 
   return (
-    <div className="space-y-8 border rounded-lg p-4 w-full">
+    <div className="space-y-8 border rounded-lg p-4 w-full shadow-xl">
       <h2 className="text-lg font-bold">Delivery Address</h2>
       <div className="space-y-4">
         <div>

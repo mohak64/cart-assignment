@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import useCart from "../(store)/store";
 import { useOrderDetails } from "@/hooks/useOrderDetails";
-import CartItem from "../components/CartItem";
-import CartOrderSummary from "../components/CartOrderSummary";
+import CartItem from "../components/cart/CartItem";
+import CartOrderSummary from "../components/cart/CartOrderSummary";
 
 import EmptyCart from "../components/ui/EmptyCart";
 import Loader from "../components/ui/Loader";
@@ -57,7 +57,7 @@ const CartPage = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-6 md:py-8 lg:py-12">
         <div className="flex flex-col lg:flex-row items-start lg:items-stretch gap-8 md:gap-16">
           <div className="flex-2   min-w-full lg:min-w-96 lg:max-w-3xl">
-            <div className="border rounded-lg p-2 md:p-4 lg:p-8">
+            <div className="border rounded-lg p-2 md:p-4 lg:p-8 shadow-xl ">
               <h2 className="text-xl font-extrabold md:text-2xl">
                 Shopping Cart ({cart.length} {cartItemsText})
               </h2>

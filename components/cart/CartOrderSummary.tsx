@@ -60,7 +60,7 @@ const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
   }
 
   return (
-    <div className="space-y-8 border rounded-lg p-8 w-full">
+    <div className="space-y-8 border rounded-lg p-8 w-full shadow-xl ">
       <h2 className="text-lg font-bold">Order Summary</h2>
       <div className="space-y-6">
         <OrderSummaryItem label="Subtotal" value={formatPrice(subTotal)} />
