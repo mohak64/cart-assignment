@@ -2,11 +2,32 @@ import React from "react";
 import { formatPrice } from "../../components/cart/PriceTag";
 import useCart from "@/(store)/store"; // Update the path as per your project structure
 
+interface CartItem {
+  id: number;
+  title: string;
+  price: number;
+  quantity: number;
+}
+
 const OrderDetails = () => {
   const { cart } = useCart(); // Get cart state from Zustand store
 
+  let storedCartItems = [];
+  if (typeof window !== "undefined") {
+    const storedCartItemsJSON = localStorage.getItem("cart");
+    storedCartItems = storedCartItemsJSON
+      ? JSON.parse(storedCartItemsJSON)
+      : [];
+  }
+
+  // Use Zustand cart if not empty, otherwise use localStorage cart
+  const mergedCart = cart.length > 0 ? cart : storedCartItems;
+
   // Calculate total price
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const total = mergedCart.reduce(
+    (acc: number, item: CartItem) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="space-y-2 border rounded-lg p-4 w-full shadow-lg">
