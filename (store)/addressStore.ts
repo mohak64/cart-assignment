@@ -1,31 +1,26 @@
+
 import { create } from "zustand";
 
-interface Address {
-    fullName: string;
-    address: string;
-    zipCode: string;
-    city: string;
-    phoneNumber: string;
-    email: string;
-}
-
-interface AddressStore {
-    address: Address;
-    setAddress: (address: Address) => void;
-}
-
-const useAddress = create<AddressStore>((set) => ({
+const useAddress = create((set) => ({
     address: {
-        fullName: "",
-        address: "",
-        zipCode: "",
-        city: "",
-        phoneNumber: "",
-        email: "",
+        fullName: localStorage.getItem("fullName") || "",
+        address: localStorage.getItem("address") || "",
+        zipCode: localStorage.getItem("zipCode") || "",
+        city: localStorage.getItem("city") || "",
+        phoneNumber: localStorage.getItem("phoneNumber") || "",
+        email: localStorage.getItem("email") || "",
     },
 
     setAddress: (newAddress) => {
-        set((state) => ({ ...state, address: newAddress }));
+        set((state) => {
+            localStorage.setItem("fullName", newAddress.fullName);
+            localStorage.setItem("address", newAddress.address);
+            localStorage.setItem("zipCode", newAddress.zipCode);
+            localStorage.setItem("city", newAddress.city);
+            localStorage.setItem("phoneNumber", newAddress.phoneNumber);
+            localStorage.setItem("email", newAddress.email);
+            return { address: newAddress };
+        });
     },
 }));
 

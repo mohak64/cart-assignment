@@ -1,6 +1,8 @@
 "use client";
-import CreditCardForm from "@/components/CreditCard";
-import UpiForm from "@/components/Upicard";
+import CartOrderSummary from "@/components/CartOrderSummary";
+import DeliverySummary from "@/components/delivery/DeliverySummary";
+import CreditCardForm from "@/components/payment/CreditCard";
+import UpiForm from "@/components/payment/Upicard";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -60,14 +62,19 @@ const PaymentPage = () => {
         </div>
       </div>
       <div className="flex justify-center align-middle items-center">
-        <Image
-          className=" flex-shrink-0 rounded object-contain outline-none dark:border-transparent "
-          src="https://img.freepik.com/free-vector/hand-holds-coin-money-icon_24640-133918.jpg?w=740&t=st=1710406511~exp=1710407111~hmac=dc5c790c7bca09f8a5e01b281cd7dd04628e41683a5e73a4d2b69b2d5a9391fd"
-          // src="https://img.freepik.com/free-vector/womans-hand-putting-dollar-bill-into-open-mans-wallet-payment-transfer-money-person-holding-purse-flat-vector-illustration-finance-concept-banner-website-design-landing-web-page_74855-25048.jpg?w=740&t=st=1710406492~exp=1710407092~hmac=c08ae5bcfa29e41ed34e481f054ecf79c5b76387aa2ffecabf3fb829fe24a37f"
-          alt="payment"
-          width={450}
-          height={450}
-        />
+        <div className="p-0 lg: p-8">
+          <Image
+            className=" flex-shrink-0 rounded object-contain outline-none dark:border-transparent "
+            // src="https://img.freepik.com/free-vector/hand-holds-coin-money-icon_24640-133918.jpg?w=740&t=st=1710406511~exp=1710407111~hmac=dc5c790c7bca09f8a5e01b281cd7dd04628e41683a5e73a4d2b69b2d5a9391fd"
+            src="https://img.freepik.com/free-vector/womans-hand-putting-dollar-bill-into-open-mans-wallet-payment-transfer-money-person-holding-purse-flat-vector-illustration-finance-concept-banner-website-design-landing-web-page_74855-25048.jpg?w=740&t=st=1710406492~exp=1710407092~hmac=c08ae5bcfa29e41ed34e481f054ecf79c5b76387aa2ffecabf3fb829fe24a37f"
+            alt="payment"
+            width={300}
+            height={300}
+          />
+          <div className="p-4 lg:p-0">
+            <DeliverySummary />
+          </div>
+        </div>
       </div>
     </div>
   );

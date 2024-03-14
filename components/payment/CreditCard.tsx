@@ -2,7 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import useCreditCard from "../(store)/creditcard"; // Import the useCreditCard hook
+import useCreditCard from "../../(store)/creditcard"; // Import the useCreditCard hook
 
 const CreditCardForm = () => {
   const { creditCardDetails, setCreditCardDetails } = useCreditCard(); // Use the useCreditCard hook

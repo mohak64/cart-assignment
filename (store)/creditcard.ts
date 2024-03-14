@@ -13,20 +13,25 @@ interface CreditCardStore {
     setCreditCardDetails: (details: CreditCardDetails) => void;
 }
 
-const useCreditCard = create<CreditCardStore>((set) => ({
-    creditCardDetails: {
+const useCreditCard = create<CreditCardStore>((set) => {
+    const storedCreditCardDetails = JSON.parse(localStorage.getItem("creditCardDetails")) || {
         name: "",
         cardNumber: "",
         expirationMonth: "",
         expirationYear: "",
         securityCode: "",
-    },
-    setCreditCardDetails: (details) => {
-        set((state) => ({
-            ...state,
-            creditCardDetails: details,
-        }));
-    },
-}));
+    };
+
+    return {
+        creditCardDetails: storedCreditCardDetails,
+        setCreditCardDetails: (details) => {
+            localStorage.setItem("creditCardDetails", JSON.stringify(details));
+            set((state) => ({
+                ...state,
+                creditCardDetails: details,
+            }));
+        },
+    };
+});
 
 export default useCreditCard;

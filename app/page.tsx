@@ -5,8 +5,8 @@ import { useOrderDetails } from "@/hooks/useOrderDetails";
 import CartItem from "../components/CartItem";
 import CartOrderSummary from "../components/CartOrderSummary";
 
-import EmptyCart from "../components/EmptyCart";
-import Loader from "../components/Loader";
+import EmptyCart from "../components/ui/EmptyCart";
+import Loader from "../components/ui/Loader";
 
 const CartPage = () => {
   const { orderDetails, loading, error } = useOrderDetails();

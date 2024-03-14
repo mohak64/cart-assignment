@@ -34,6 +34,18 @@ const DeliveryDetails = () => {
     validateEmail(email);
   }, [phoneNumber, email]);
 
+  useEffect(() => {
+    const storedAddress = addressStore.address;
+    if (storedAddress) {
+      setFullName(storedAddress.fullName);
+      setAddress(storedAddress.address);
+      setZipCode(storedAddress.zipCode);
+      setCity(storedAddress.city);
+      setPhoneNumber(storedAddress.phoneNumber);
+      setEmail(storedAddress.email);
+    }
+  }, []);
+
   const handleSubmit = () => {
     if (!fullName || !address || !zipCode || !city || !phoneNumber || !email) {
       Swal.fire({
