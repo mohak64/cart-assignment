@@ -1,16 +1,18 @@
 "use client";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+
 import useAddress from "../../(store)/addressStore";
 
 const ConfirmationDelivery = () => {
-  const { address } = useAddress();
-  const router = useRouter();
+  let { address } = useAddress();
 
-  const handleUpdateAddress = () => {
-    router.push("/delivery");
-  };
+  if (!address.fullName && typeof window !== "undefined") {
+    const storedAddressString = localStorage.getItem("address");
+    const storedAddress = storedAddressString
+      ? JSON.parse(storedAddressString)
+      : null;
+    address = storedAddress || {};
+  }
 
   return (
     <div className="space-y-2 border rounded-lg p-4 w-full shadow-xl">

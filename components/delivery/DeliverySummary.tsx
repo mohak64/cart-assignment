@@ -5,8 +5,16 @@ import { useRouter } from "next/navigation";
 import useAddress from "../../(store)/addressStore";
 
 const DeliverySummary = () => {
-  const { address } = useAddress();
+  let { address } = useAddress();
   const router = useRouter();
+
+  if (!address.fullName && typeof window !== "undefined") {
+    const storedAddressString = localStorage.getItem("address");
+    const storedAddress = storedAddressString
+      ? JSON.parse(storedAddressString)
+      : null;
+    address = storedAddress || {};
+  }
 
   const handleUpdateAddress = () => {
     router.push("/delivery");
