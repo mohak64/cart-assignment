@@ -1,28 +1,28 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import useAddress from "@/(store)/addressStore";
+import Swal from "sweetalert2";
 
-const DeliveryDetails = ({ onSubmit }) => {
+const DeliveryDetails = () => {
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [city, setCity] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
 
-  // Validation function for phone number
-  const validatePhoneNumber = (phoneNumber) => {
-    // Use a regular expression to validate the phone number format
+  const addressStore = useAddress((state) => state);
+
+  const validatePhoneNumber = (phoneNumber: string) => {
     const phoneRegex = /^\d{10}$/;
     return setIsPhoneNumberValid(phoneRegex.test(phoneNumber));
   };
 
-  // Validation function for email
-  const validateEmail = (email) => {
-    // Use a regular expression to validate the email format
+  const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return setIsEmailValid(emailRegex.test(email));
   };
@@ -39,20 +39,40 @@ const DeliveryDetails = ({ onSubmit }) => {
     }
 
     if (!isPhoneNumberValid) {
-      alert("Please enter a valid phone number.");
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Phone Number",
+        text: "Please enter a valid phone number.",
+      });
       return;
     }
 
     if (!isEmailValid) {
-      alert("Please enter a valid email address.");
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Email Address",
+        text: "Please enter a valid email address.",
+      });
       return;
     }
 
-    // If all validations pass, proceed with form submission
-    alert("Address saved successfully!");
+    Swal.fire({
+      icon: "success",
+      title: "Address saved successfully!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    const newAddress = {
+      fullName,
+      address,
+      zipCode,
+      city,
+      phoneNumber,
+      email,
+    };
 
-    // Trigger the callback provided by the parent component
-    onSubmit();
+    addressStore.setAddress(newAddress);
+    console.log("e");
   };
 
   return (
