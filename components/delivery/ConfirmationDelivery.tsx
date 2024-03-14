@@ -7,7 +7,7 @@ const ConfirmationDelivery = () => {
   let { address } = useAddress();
 
   if (!address.fullName && typeof window !== "undefined") {
-    const storedAddressString = localStorage.getItem("address");
+    const storedAddressString = localStorage.getItem("addressDetails");
     const storedAddress = storedAddressString
       ? JSON.parse(storedAddressString)
       : null;

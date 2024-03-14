@@ -49,7 +49,6 @@ const DeliveryDetails = () => {
         setEmail(storedAddress.email);
       }
     } else {
-      // Use address details from useAddress
       setFullName(storedAddress.fullName);
       setAddress(storedAddress.address);
       setZipCode(storedAddress.zipCode);

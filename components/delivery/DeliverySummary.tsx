@@ -9,7 +9,7 @@ const DeliverySummary = () => {
   const router = useRouter();
 
   if (!address.fullName && typeof window !== "undefined") {
-    const storedAddressString = localStorage.getItem("address");
+    const storedAddressString = localStorage.getItem("addressDetails");
     const storedAddress = storedAddressString
       ? JSON.parse(storedAddressString)
       : null;
