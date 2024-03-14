@@ -35,12 +35,18 @@ const DeliveryDetails = () => {
   }, [phoneNumber, email]);
 
   useEffect(() => {
-    // Fetch address details from localStorage if useAddress is empty
-    const storedAddress = addressStore.address;
-    if (!storedAddress) {
-      const storedAddressString = localStorage.getItem("addressDetails");
-      if (storedAddressString) {
-        const storedAddress = JSON.parse(storedAddressString);
+    const storedAddressString = localStorage.getItem("addressDetails");
+    if (storedAddressString) {
+      const storedAddress = JSON.parse(storedAddressString);
+      setFullName(storedAddress.fullName);
+      setAddress(storedAddress.address);
+      setZipCode(storedAddress.zipCode);
+      setCity(storedAddress.city);
+      setPhoneNumber(storedAddress.phoneNumber);
+      setEmail(storedAddress.email);
+    } else {
+      const storedAddress = addressStore.address;
+      if (storedAddress) {
         setFullName(storedAddress.fullName);
         setAddress(storedAddress.address);
         setZipCode(storedAddress.zipCode);
@@ -48,13 +54,6 @@ const DeliveryDetails = () => {
         setPhoneNumber(storedAddress.phoneNumber);
         setEmail(storedAddress.email);
       }
-    } else {
-      setFullName(storedAddress.fullName);
-      setAddress(storedAddress.address);
-      setZipCode(storedAddress.zipCode);
-      setCity(storedAddress.city);
-      setPhoneNumber(storedAddress.phoneNumber);
-      setEmail(storedAddress.email);
     }
   }, []);
 
