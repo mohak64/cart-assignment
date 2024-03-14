@@ -23,6 +23,7 @@ const CartPage = () => {
 
   const reloadCart = () => {
     hookCart.emptyCart();
+    localStorage.removeItem("cart");
     window.location.reload();
   };
 
