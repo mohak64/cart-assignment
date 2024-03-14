@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import useUpiId from "../../(store)/upiid"; // Import the useUpiId hook
@@ -28,8 +28,23 @@ const UPIPaymentForm = () => {
       return;
     }
 
+    // Save UPI ID details to localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("upiIdDetails", JSON.stringify(upiIdDetails));
+    }
+
     router.push("/confirmation");
   };
+
+  useEffect(() => {
+    // Fetch UPI ID details from localStorage if available
+    if (typeof window !== "undefined") {
+      const storedUpiIdDetails = localStorage.getItem("upiIdDetails");
+      if (storedUpiIdDetails) {
+        setUpiIdDetails(JSON.parse(storedUpiIdDetails));
+      }
+    }
+  }, []);
 
   return (
     <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700 max-w-2xl border">
