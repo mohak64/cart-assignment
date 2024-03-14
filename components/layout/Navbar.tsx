@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Navbar = () => {
@@ -8,7 +9,7 @@ const Navbar = () => {
     >
       <a href="/">
         <div className="flex items-center">
-          <img
+          <Image
             src="https://groww.in/groww-logo-270.png"
             alt="groww image"
             width={50}
