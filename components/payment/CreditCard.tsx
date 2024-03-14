@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import useCreditCard from "../../(store)/creditcard"; // Import the useCreditCard hook
@@ -30,10 +30,23 @@ const CreditCardForm = () => {
       });
       return;
     }
-
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        "creditCardDetails",
+        JSON.stringify(creditCardDetails)
+      );
+    }
     router.push("/confirmation");
   };
-
+  useEffect(() => {
+    // Fetch credit card details from localStorage if available
+    if (typeof window !== "undefined") {
+      const storedCreditCardDetails = localStorage.getItem("creditCardDetails");
+      if (storedCreditCardDetails) {
+        setCreditCardDetails(JSON.parse(storedCreditCardDetails));
+      }
+    }
+  }, []);
   return (
     <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700 max-w-2xl border ">
       <div className="mb-2">
