@@ -1,3 +1,5 @@
+"use client";
+
 import { create } from "zustand";
 
 interface CreditCardDetails {
@@ -14,13 +16,16 @@ interface CreditCardStore {
 }
 
 const useCreditCard = create<CreditCardStore>((set) => {
-    const storedCreditCardDetails = JSON.parse(localStorage.getItem("creditCardDetails")) || {
-        name: "",
-        cardNumber: "",
-        expirationMonth: "",
-        expirationYear: "",
-        securityCode: "",
-    };
+    const storedCreditCardDetailsString = localStorage.getItem("creditCardDetails");
+    const storedCreditCardDetails = storedCreditCardDetailsString
+        ? JSON.parse(storedCreditCardDetailsString)
+        : {
+            name: "",
+            cardNumber: "",
+            expirationMonth: "",
+            expirationYear: "",
+            securityCode: "",
+        };
 
     return {
         creditCardDetails: storedCreditCardDetails,

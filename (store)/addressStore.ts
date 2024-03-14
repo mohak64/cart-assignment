@@ -1,7 +1,21 @@
-
+"use client";
 import { create } from "zustand";
 
-const useAddress = create((set) => ({
+interface Address {
+    fullName: string;
+    address: string;
+    zipCode: string;
+    city: string;
+    phoneNumber: string;
+    email: string;
+}
+
+interface AddressStore {
+    address: Address;
+    setAddress: (newAddress: Address) => void;
+}
+
+const useAddress = create<AddressStore>((set) => ({
     address: {
         fullName: localStorage.getItem("fullName") || "",
         address: localStorage.getItem("address") || "",
@@ -12,7 +26,7 @@ const useAddress = create((set) => ({
     },
 
     setAddress: (newAddress) => {
-        set((state) => {
+        set((state: AddressStore) => {
             localStorage.setItem("fullName", newAddress.fullName);
             localStorage.setItem("address", newAddress.address);
             localStorage.setItem("zipCode", newAddress.zipCode);

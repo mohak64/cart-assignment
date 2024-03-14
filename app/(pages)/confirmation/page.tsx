@@ -1,18 +1,20 @@
 "use client";
 import OrderConfirmed from "@/components/transaction/OrderConfirmed";
 import OrderFailed from "@/components/transaction/OrderFailed";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Confirmation: React.FC = () => {
-  const initialProbabilityThreshold = 0.7;
-  let probabilityThreshold = initialProbabilityThreshold;
+  const [probabilityThreshold, setProbabilityThreshold] = useState(0.7);
 
-  const previousPaymentFailed =
-    localStorage.getItem("previousPaymentFailed") === "true";
+  useEffect(() => {
+    const previousPaymentFailed =
+      typeof window !== "undefined" &&
+      localStorage.getItem("previousPaymentFailed") === "true";
 
-  if (previousPaymentFailed) {
-    probabilityThreshold = 1;
-  }
+    if (previousPaymentFailed) {
+      setProbabilityThreshold(1);
+    }
+  }, []);
 
   const randomValue = Math.random();
 
@@ -28,10 +30,13 @@ const Confirmation: React.FC = () => {
   useEffect(() => {
     const paymentStatus =
       randomValue < probabilityThreshold ? "success" : "failed";
-    localStorage.setItem(
-      "previousPaymentFailed",
-      paymentStatus === "failed" ? "true" : "false"
-    );
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        "previousPaymentFailed",
+        paymentStatus === "failed" ? "true" : "false"
+      );
+    }
   }, [randomValue, probabilityThreshold]);
 
   return <div className="p-2 lg:p-8">{renderOrderComponent()}</div>;

@@ -4,7 +4,17 @@ import { FaArrowRight } from "react-icons/fa";
 import { formatPrice } from "./PriceTag";
 import { useRouter } from "next/navigation";
 
-const OrderSummaryItem = ({ label, value, children }) => {
+interface OrderSummaryItemProps {
+  label: string;
+  value?: string; // Make value optional since it can be undefined
+  children?: React.ReactNode;
+}
+
+const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({
+  label,
+  value,
+  children,
+}) => {
   return (
     <div className="flex justify-between text-sm">
       <span className="font-medium">{label}</span>
@@ -12,8 +22,15 @@ const OrderSummaryItem = ({ label, value, children }) => {
     </div>
   );
 };
+interface CartOrderSummaryProps {
+  subTotal: number;
+  isCartEmpty: boolean;
+}
 
-const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
+const CartOrderSummary: React.FC<CartOrderSummaryProps> = ({
+  subTotal,
+  isCartEmpty,
+}) => {
   const router = useRouter();
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -21,7 +38,7 @@ const CartOrderSummary = ({ subTotal, isCartEmpty }) => {
   const [isCouponCodeVisible, setIsCouponCodeVisible] = useState(false);
   const [hover, setHover] = useState(false);
 
-  const applyCoupon = (code) => {
+  const applyCoupon = (code: string) => {
     let appliedDiscount = 0;
 
     switch (code) {

@@ -12,8 +12,10 @@ const OrderConfirmed = () => {
   const router = useRouter();
 
   const finishOrder = () => {
-    localStorage.removeItem("cart");
-    router.push("/");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("cart");
+      router.push("/");
+    }
   };
 
   return (

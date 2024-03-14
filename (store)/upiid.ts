@@ -1,3 +1,6 @@
+
+"use client";
+
 import { create } from "zustand";
 
 interface UpiIdDetails {
@@ -10,9 +13,10 @@ interface UpiIdStore {
 }
 
 const useUpiId = create<UpiIdStore>((set) => {
-    const storedUpiIdDetails = JSON.parse(localStorage.getItem("upiIdDetails")) || {
-        upiId: "",
-    };
+    const storedUpiIdDetailsString = localStorage.getItem("upiIdDetails");
+    const storedUpiIdDetails = storedUpiIdDetailsString
+        ? JSON.parse(storedUpiIdDetailsString)
+        : { upiId: "" };
 
     return {
         upiIdDetails: storedUpiIdDetails,

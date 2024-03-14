@@ -1,13 +1,23 @@
+"use client";
 import React from "react";
 import { formatPrice } from "../../components/cart/PriceTag";
 
+interface CartItem {
+  price: number;
+  quantity: number;
+  title: string;
+}
+
 const OrderDetails = () => {
-  // Retrieve cart items from local storage
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  let cartItems: CartItem[] = [];
+  if (typeof window !== "undefined") {
+    const cartItemsJSON = localStorage.getItem("cart");
+    cartItems = cartItemsJSON ? JSON.parse(cartItemsJSON) : [];
+  }
 
   // Calculate total price
   const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc: number, item: CartItem) => acc + item.price * item.quantity,
     0
   );
 

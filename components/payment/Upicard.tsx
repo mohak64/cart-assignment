@@ -7,7 +7,7 @@ const UPIPaymentForm = () => {
   const { upiIdDetails, setUpiIdDetails } = useUpiId(); // Use the useUpiId hook
   const router = useRouter();
 
-  const showError = (message) => {
+  const showError = (message: string) => {
     Swal.fire({
       icon: "error",
       title: "Error",

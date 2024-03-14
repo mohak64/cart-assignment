@@ -1,5 +1,5 @@
 "use client";
-import CartOrderSummary from "@/components/cart/CartOrderSummary";
+
 import DeliverySummary from "@/components/delivery/DeliverySummary";
 import CreditCardForm from "@/components/payment/CreditCard";
 import UpiForm from "@/components/payment/Upicard";
@@ -22,11 +22,10 @@ const WalletTab = () => {
   );
 };
 
-// Payment page component
 const PaymentPage = () => {
-  const [activeTab, setActiveTab] = useState("card"); // Default active tab is "card"
+  const [activeTab, setActiveTab] = useState<"card" | "upi">("card");
 
-  const handleTabChange = (tab) => {
+  const handleTabChange = (tab: "card" | "upi") => {
     setActiveTab(tab);
   };
 

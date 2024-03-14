@@ -8,9 +8,17 @@ import CartOrderSummary from "../components/cart/CartOrderSummary";
 import EmptyCart from "../components/ui/EmptyCart";
 import Loader from "../components/ui/Loader";
 
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
+
 const CartPage = () => {
   const { orderDetails, loading, error } = useOrderDetails();
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<Product[]>([]);
   const [subTotal, setSubTotal] = useState(0);
   const [totalCartItems, setTotalCartItems] = useState(0);
   const [cartItemsText, setCartItemsText] = useState("Item");
@@ -26,8 +34,10 @@ const CartPage = () => {
   }, [hookCart.cart]);
 
   const reloadCart = () => {
-    localStorage.removeItem("cart");
-    window.location.reload();
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("cart");
+      window.location.reload();
+    }
   };
 
   const calculateTotalValue = () => {

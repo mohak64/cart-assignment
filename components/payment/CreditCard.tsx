@@ -9,14 +9,16 @@ const CreditCardForm = () => {
 
   const router = useRouter();
 
-  const validateCreditCard = (cardNumber) => {
+  const validateCreditCard = (cardNumber: string) => {
     // For simplicity, we'll just check if the number is numeric and has 16 digits
     return /^\d{16}$/.test(cardNumber);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setCreditCardDetails({ ...creditCardDetails, [name]: value }); // Update credit card details using setCreditCardDetails from the hook
+    setCreditCardDetails({ ...creditCardDetails, [name]: value });
   };
 
   const handlePayment = () => {
