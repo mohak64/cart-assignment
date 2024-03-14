@@ -48,7 +48,10 @@ const UPIPaymentForm = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700 max-w-2xl border">
+    <div
+      className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700 max-w-2xl border"
+      style={{ animation: "fadeIn 1s ease-in-out" }} // Apply fade-in animation
+    >
       <div className="mb-2">
         <div className="text-center font-bold text-xl uppercase">
           Secure UPI payment info

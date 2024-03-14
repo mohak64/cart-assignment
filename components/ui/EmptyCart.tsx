@@ -21,12 +21,21 @@ const EmptyCart = () => {
         alt="empty_cart"
         width={250}
         height={250}
+        style={{ animation: "fadeIn 1s ease-in-out" }}
       />
-      <h2 className="font-bold text-xl mt-2">Your Cart is Empty</h2>
-      <p className="text-center">Add something to make me happy :)</p>
+      <h2
+        className="font-bold text-xl mt-2"
+        style={{ animation: "fadeIn 1s ease-in-out" }}
+      >
+        Your Cart is Empty
+      </h2>
+      <p className="text-center" style={{ animation: "fadeIn 1s ease-in-out" }}>
+        Add something to make me happy :)
+      </p>
 
       <button
         className="bg-customHoverBlue text-white py-2 px-4 rounded-lg text-sm flex items-center mt-6"
+        style={{ animation: "bounceIn 0.5s ease" }}
         onClick={reloadCart}
       >
         Reload Cart <FaArrowRight className="ml-1" />

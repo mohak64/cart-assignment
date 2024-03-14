@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { formatPrice } from "../../components/cart/PriceTag";
 import useCart from "@/(store)/store"; // Update the path as per your project structure
 
@@ -30,25 +31,41 @@ const OrderDetails = () => {
   );
 
   return (
-    <div className="space-y-2 border rounded-lg p-4 w-full shadow-lg">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="space-y-2 border rounded-lg p-4 w-full shadow-lg"
+    >
       <h2 className="text-lg font-bold">Order Summary</h2>
 
       {mergedCart.map((item: CartItem, index: number) => (
-        <div key={index} className="flex justify-between">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          className="flex justify-between"
+        >
           <p className="font-normal mr-4">
             {item.title.split(" ").slice(0, 3).join(" ")}{" "}
             <span className="font-semibold">(x{item.quantity})</span>
           </p>
           <p>{formatPrice(item.price * item.quantity)}</p>
-        </div>
+        </motion.div>
       ))}
 
       {/* Display total price */}
-      <div className="flex justify-between">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: mergedCart.length * 0.1 }}
+        className="flex justify-between"
+      >
         <p className="font-semibold">Total</p>
         <p className="font-semibold">${total.toFixed(2)}</p>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

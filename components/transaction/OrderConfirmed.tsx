@@ -1,4 +1,3 @@
-"use client";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
@@ -17,17 +16,23 @@ const OrderConfirmed = () => {
   };
 
   return (
-    <div className=" mr-auto block  lg:flex justify-center  gap-5">
-      <div className="flex justify-center  items-center">
-        <div className="pb-4 lg:pb-0 w-full ">
+    <div className="mr-auto block lg:flex justify-center gap-5">
+      <div
+        className="flex justify-center items-center fadeIn"
+        style={{ animationDuration: "1s" }}
+      >
+        <div className="pb-4 lg:pb-0 w-full">
           <OrderDetails />
           <div className="mt-6">
             <ConfirmationDelivery />
           </div>
         </div>
       </div>
-      <div className="flex justify-center align-middle shadow-lg p-4 lg:p-8 border rounded-lg">
-        <div className="flex flex-col items-center justify-center  mx-auto">
+      <div
+        className="flex justify-center align-middle shadow-lg p-4 lg:p-8 border rounded-lg fadeIn"
+        style={{ animationDuration: "1s" }}
+      >
+        <div className="flex flex-col items-center justify-center mx-auto">
           <Image
             src="https://img.freepik.com/free-vector/verified-concept-illustration_114360-4998.jpg?w=826&t=st=1710436482~exp=1710437082~hmac=24657ca360e029180a4e1dfbc4c74bcbe0a59407844a586c3f63ffd28695ae7c"
             alt="gif"
@@ -42,7 +47,7 @@ const OrderConfirmed = () => {
             your purchase order.
           </p>
           <button
-            className=" bg-customBlue hover:bg-customHoverBlue  text-white flex justify-center items-center font-bold py-2 px-4 rounded-md"
+            className="bg-customBlue hover:bg-customHoverBlue text-white flex justify-center items-center font-bold py-2 px-4 rounded-md"
             onClick={finishOrder}
           >
             Continue Shopping <FaArrowRight className="ml-2" />
