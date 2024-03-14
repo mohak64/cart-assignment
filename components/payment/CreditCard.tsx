@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import useCreditCard from "../../(store)/creditcard"; // Import the useCreditCard hook
+import Image from "next/image";
 
 const CreditCardForm = () => {
   const { creditCardDetails, setCreditCardDetails } = useCreditCard(); // Use the useCreditCard hook
@@ -81,9 +82,12 @@ const CreditCardForm = () => {
       <div className="mb-2">
         <div className="text-center font-bold text-xl uppercase">
           Secure payment info
-          <img
+          <Image
             className="p-4"
             src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
+            width={500}
+            height={500}
+            alt="creditcard"
           />
         </div>
       </div>

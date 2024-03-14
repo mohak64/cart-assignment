@@ -10,6 +10,7 @@ const EmptyCart = () => {
   }, []);
 
   const reloadCart = () => {
+    localStorage.removeItem("cart");
     window.location.reload();
   };
 

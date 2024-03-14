@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import useUpiId from "../../(store)/upiid"; // Import the useUpiId hook
+import Image from "next/image";
 
 const UPIPaymentForm = () => {
   const { upiIdDetails, setUpiIdDetails } = useUpiId(); // Use the useUpiId hook
@@ -51,9 +52,12 @@ const UPIPaymentForm = () => {
       <div className="mb-2">
         <div className="text-center font-bold text-xl uppercase">
           Secure UPI payment info
-          <img
+          <Image
             className="p-4"
             src="https://t3.ftcdn.net/jpg/05/60/50/16/360_F_560501607_x7crxqBWbmbgK2k8zOL0gICbIbK9hP6y.jpg"
+            width={500}
+            height={500}
+            alt="upi"
           />
         </div>
       </div>
