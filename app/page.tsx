@@ -84,7 +84,7 @@ const CartPage = () => {
               <p>
                 or
                 <button className="text-blue-500 ml-1" onClick={reloadCart}>
-                  Continue shopping
+                  Reload Cart
                 </button>
               </p>
             </div>
