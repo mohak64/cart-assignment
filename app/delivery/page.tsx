@@ -3,8 +3,10 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import useAddress from "@/(store)/addressStore";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 const DeliveryDetails = () => {
+  const router = useRouter();
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
@@ -34,7 +36,11 @@ const DeliveryDetails = () => {
 
   const handleSubmit = () => {
     if (!fullName || !address || !zipCode || !city || !phoneNumber || !email) {
-      alert("Please fill in all fields.");
+      Swal.fire({
+        icon: "error",
+        title: "Fields missing",
+        text: "Please fill in all fields.",
+      });
       return;
     }
 
@@ -60,7 +66,7 @@ const DeliveryDetails = () => {
       icon: "success",
       title: "Address saved successfully!",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 500,
     });
     const newAddress = {
       fullName,
@@ -72,7 +78,7 @@ const DeliveryDetails = () => {
     };
 
     addressStore.setAddress(newAddress);
-    console.log("e");
+    router.push("/payment");
   };
 
   return (
@@ -83,7 +89,7 @@ const DeliveryDetails = () => {
           <div className="space-y-6">
             <div>
               <label htmlFor="fullName" className="block mb-1">
-                Full Name
+                Full Name<span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -96,7 +102,7 @@ const DeliveryDetails = () => {
             </div>
             <div>
               <label htmlFor="address" className="block mb-1">
-                Address
+                Address<span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -110,7 +116,7 @@ const DeliveryDetails = () => {
             <div className="flex justify-between space-x-2">
               <div>
                 <label htmlFor="zipCode" className="block mb-1">
-                  Zip Code
+                  Zip Code<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -123,7 +129,7 @@ const DeliveryDetails = () => {
               </div>
               <div>
                 <label htmlFor="city" className="block mb-1">
-                  City
+                  City<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -137,7 +143,7 @@ const DeliveryDetails = () => {
             </div>
             <div>
               <label htmlFor="phoneNumber" className="block mb-1">
-                Phone Number
+                Phone Number<span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -150,7 +156,7 @@ const DeliveryDetails = () => {
             </div>
             <div>
               <label htmlFor="email" className="block mb-1">
-                Email Address
+                Email Address<span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
