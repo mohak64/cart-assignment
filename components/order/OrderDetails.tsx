@@ -33,7 +33,7 @@ const OrderDetails = () => {
     <div className="space-y-2 border rounded-lg p-4 w-full shadow-lg">
       <h2 className="text-lg font-bold">Order Summary</h2>
 
-      {cart.map((item, index) => (
+      {mergedCart.map((item: CartItem, index: number) => (
         <div key={index} className="flex justify-between">
           <p className="font-normal mr-4">
             {item.title.split(" ").slice(0, 3).join(" ")}{" "}
