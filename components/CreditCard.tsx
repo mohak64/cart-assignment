@@ -1,17 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Swal from "sweetalert2";
+import useCreditCard from "../(store)/creditcard"; // Import the useCreditCard hook
 
 const CreditCardForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    cardNumber: "",
-    expirationMonth: "",
-    expirationYear: "",
-    securityCode: "",
-  });
+  const { creditCardDetails, setCreditCardDetails } = useCreditCard(); // Use the useCreditCard hook
 
   const router = useRouter();
 
@@ -22,12 +16,11 @@ const CreditCardForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setCreditCardDetails({ ...creditCardDetails, [name]: value }); // Update credit card details using setCreditCardDetails from the hook
   };
 
   const handlePayment = () => {
-    // Validate credit card number
-    if (!validateCreditCard(formData.cardNumber)) {
+    if (!validateCreditCard(creditCardDetails.cardNumber)) {
       Swal.fire({
         icon: "error",
         title: "Invalid Card Number",
@@ -36,16 +29,14 @@ const CreditCardForm = () => {
       return;
     }
 
-    // Add additional validation checks as needed
-
-    // Payment successful
     Swal.fire({
       icon: "success",
       title: "Payment Successful",
       text: "Thank you for your payment!",
     });
 
-    router.push("/confirmation2");
+    router.push("/confirmation");
+    console.log(creditCardDetails);
   };
 
   return (
@@ -63,7 +54,7 @@ const CreditCardForm = () => {
         <div className="mb-1">Name on Card</div>
         <input
           name="name"
-          value={formData.name}
+          value={creditCardDetails.name}
           onChange={handleInputChange}
           placeholder="John Smith"
           type="text"
@@ -74,7 +65,7 @@ const CreditCardForm = () => {
         <div className="mb-1">Card Number</div>
         <input
           name="cardNumber"
-          value={formData.cardNumber}
+          value={creditCardDetails.cardNumber}
           onChange={handleInputChange}
           placeholder="0000 0000 0000 0000"
           type="numeric"
@@ -86,7 +77,7 @@ const CreditCardForm = () => {
           <div className="mb-1">Expiration Date</div>
           <select
             name="expirationMonth"
-            value={formData.expirationMonth}
+            value={creditCardDetails.expirationMonth}
             onChange={handleInputChange}
             className="w-full border border-gray-300 rounded-md p-2 mb-1"
           >
@@ -108,7 +99,7 @@ const CreditCardForm = () => {
         <div className="px-2 w-1/2">
           <select
             name="expirationYear"
-            value={formData.expirationYear}
+            value={creditCardDetails.expirationYear}
             onChange={handleInputChange}
             className="w-full border border-gray-300 rounded-md p-2 mb-1"
           >
@@ -127,7 +118,7 @@ const CreditCardForm = () => {
         <div className="mb-1">Security Code</div>
         <input
           name="securityCode"
-          value={formData.securityCode}
+          value={creditCardDetails.securityCode}
           onChange={handleInputChange}
           placeholder="123"
           type="password"
