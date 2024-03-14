@@ -3,7 +3,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden bg-white py-8 absolute bottom-0 w-full">
+    <footer
+      className="relative overflow-hidden bg-white py-8 absolute bottom-0 w-full"
+      style={{ animation: "fadeIn 0.5s ease" }}
+    >
       <div className="container relative z-10 mx-auto px-4">
         <div className="-m-8 flex flex-wrap items-center justify-center md:justify-between">
           <div className="w-auto ml-4 md:ml-0 p-4 lg:p-8">
